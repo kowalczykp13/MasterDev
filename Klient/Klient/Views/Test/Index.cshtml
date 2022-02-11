@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Client.Models.Klient>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div>
+    <a class="btn btn-primary" style="float:left; margin-right:10px;" asp-action="Create">Utwórz nowy</a>
+    <a class="btn btn-primary" style="float:left; margin-right:10px;" asp-action="Import">Importuj</a>
+@using (Html.BeginForm("ExportData","Test"))
+{
+    <select name="file_type" id="file_type" >
+        <option value="csv">CSV</option>
+        <option value="xmlx">XMLX</option>
+    </select>
+    <input type="submit" value="Ekportuj klientów do CSV" class="btn btn-info" />
+    }
+
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PESEL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PESEL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td style="width:50px">
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a>
+            </td>
+            <td>
+                 <form  asp-action="Delete">
+                        <input type="hidden" asp-for="@item.Id" />
+                        <input type="submit" value="Usuń" class="btn btn-danger" />
+                </form>
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

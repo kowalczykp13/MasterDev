@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Import";
+}
+
+<h1>Import z XMLX</h1>
+
+<form method="post" asp-controller="Test" asp-action="ImportFromXMLX" enctype="multipart/form-data">
+    <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  />
+    <button type="submit"> Importuj</button>
+</form>
+<h1>Import z CSV</h1>
+<form method="post" asp-controller="Test" asp-action="ImportFromCSV" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".csv"  />
+    <button type="submit"> Importuj</button>
+</form>
+
